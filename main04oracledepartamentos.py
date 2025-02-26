@@ -9,16 +9,14 @@ print('2.- Buscar departamento')
 print('Seleccione una opción: ')
 opcion=int(input())
 if (opcion==1):
-
-
-
-
+    print('Insertar departamento: ')
+    print('Id del departamento: ')
+    numero=int(input())
     print('Nombre del departamento: ')
     nombre=input()
     print('Localidad: ')
     localidad=input()
     afectados=servicio.insertarDepartamento(numero, nombre, localidad)
-
     print(f'Departamentos insertados: {afectados}')
 
 elif (opcion == 2):

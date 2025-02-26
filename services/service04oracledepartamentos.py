@@ -5,15 +5,15 @@ class ServiceOracleDepartamentos:
     def __init__(self):
         self.connection=oracledb.connect(user='SYSTEM', password='oracle', dsn='localhost/xe')
 
-    def buscarDepartamento(self, numero):
+    def buscarDepartamentoId(self, numero):
         sql='select * from DEPT where DEPT_NO=:p1'
-        cursor=self.connection,cursor()
+        cursor=self.connection.cursor()
         cursor.execute(sql, (numero,))
         row=cursor.fetchone()
         modelo = departamento.Departamento()
         modelo.numero=row[0]
-        modelo.numero=row[1]
-        modelo.numero=row[2]
+        modelo.nombre=row[1]
+        modelo.localidad=row[2]
         cursor.close()
         return modelo
 
@@ -26,4 +26,3 @@ class ServiceOracleDepartamentos:
         cursor.close()
         return registros
     
-
