@@ -6,15 +6,15 @@ def getSaludo():
     return 'Bienvenido a Sql Server'
 
 def getMascota1():
-    dato=mascota.Mascota()
-    dato.nombre='Patricio'
-    dato.raza='PEstrella de mar'
-    dato.edad=8
-    return dato
+    dato1=mascota.Mascota()
+    dato1.nombre='Patricio'
+    dato1.raza='PEstrella de mar'
+    dato1.edad=8
+    return dato1
 
 def getMascota2():
-    dato=mascota.Mascota()
-    dato.nombre='Sebastián'
-    dato.raza='Cangrejo'
-    dato.edad=8
-    return dato
+    dato2=mascota.Mascota()
+    dato2.nombre='Sebastián'
+    dato2.raza='Cangrejo'
+    dato2.edad=8
+    return dato2
