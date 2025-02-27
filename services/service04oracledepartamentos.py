@@ -5,6 +5,15 @@ class ServiceOracleDepartamentos:
     def __init__(self):
         self.connection=oracledb.connect(user='SYSTEM', password='oracle', dsn='localhost/xe')
 
+    def eliminarDepartamento(self, numero):
+        sql='delete from DEPT where DEPT_NO=:p1'
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (numero,))
+        registros=cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
+
     def buscarDepartamentoId(self, numero):
         sql='select * from DEPT where DEPT_NO=:p1'
         cursor=self.connection.cursor()
@@ -16,6 +25,15 @@ class ServiceOracleDepartamentos:
         modelo.localidad=row[2]
         cursor.close()
         return modelo
+    
+    def modificarDepartamento(self, nombre, localidad, numero):
+        sql='update DEPT set DNOMBRE=:p1, LOC=:p2 where DEPT_NO=:p3'
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (nombre, localidad, numero))
+        registros=cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
 
     def insertarDepartamento(self, numero, nombre, localidad):
         sql='insert into DEPT values (:id, :nombre, :localidad)'
@@ -26,3 +44,16 @@ class ServiceOracleDepartamentos:
         cursor.close()
         return registros
     
+    def getAllDepartamentos(self):
+        sql='select * from DEPT'
+        cursor=self.connection.cursor()
+        cursor.execute(sql)
+        datos=[]
+        for row in cursor:
+            dept=departamento.Departamento()
+            dept.numero=row[0]
+            dept.nombre=row[1]
+            dept.localidad=row[2]
+            datos.append(dept)
+        cursor.close()
+        return datos
