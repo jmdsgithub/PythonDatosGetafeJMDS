@@ -20,5 +20,31 @@ class ServiceOracleDoctores:
             datos.append(doc)
         cursor.close()
         return datos
+    
+    def insertarDoctor(self, idDoctor, apellido, especialidad, salario, hospital):
+        sql='insert into DOCTOR values (:hospital,:idDoctor,:apellido, :especialidad,:salario)'
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (hospital, idDoctor, apellido, especialidad, salario))
+        registros=cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
 
-
+    def eliminarDoctor(self, idDoctor):
+        sql='delete from DOCTOR where DOCTOR_NO=:p1'
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (idDoctor,))
+        registros=cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
+    
+    def modificarDoctor(self, idDoctor, apellido, especialidad, salario, hospital):
+        sql='''update DOCTOR set APELLIDO=:p1, ESPECIALIDAD=:p2, SALARIO=:p3,
+        HOSPITAL_COD=:p4 where DOCTOR_NO=:p5'''
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (apellido, especialidad, salario, hospital, idDoctor))
+        registros=cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
