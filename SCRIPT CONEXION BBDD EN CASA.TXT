@@ -1,0 +1,18 @@
+#Script de conexión a Base de Datos en Casa
+
+import platform
+if platform.system() == "Windows":
+    instant_client_dir = r"C:\Oracle\instantclient_23_7"
+
+import oracledb
+oracledb.init_oracle_client(lib_dir=instant_client_dir)
+connection = oracledb.connect(user='SYSTEM', password='oracle', dsn='localhost/xe')
+print("**Conectado a Base de Datos**")
+
+
+
+
+
+
+connection.close()
+print("**Desconectado de Base de Datos**")
