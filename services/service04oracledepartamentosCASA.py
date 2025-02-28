@@ -30,10 +30,10 @@ class ServiceOracleDepartamentos:
         cursor.close()
         return modelo
     
-    def modificarDepartamento(self, nombre, localidad, numero, viejonumero):
-        sql='update DEPT set DNOMBRE=:p1, LOC=:p2, DEPT_NO=:p3 where DEPT_NO=:p4'
+    def modificarDepartamento(self, numero, nombre, localidad):
+        sql='update DEPT set DNOMBRE=:p1, LOC=:p2 where DEPT_NO=:p3'
         cursor=self.connection.cursor()
-        cursor.execute(sql, (nombre, localidad, numero, viejonumero))
+        cursor.execute(sql, (nombre, localidad, numero))
         registros=cursor.rowcount
         self.connection.commit()
         cursor.close()

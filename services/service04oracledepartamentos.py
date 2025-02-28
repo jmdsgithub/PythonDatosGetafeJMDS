@@ -26,7 +26,7 @@ class ServiceOracleDepartamentos:
         cursor.close()
         return modelo
     
-    def modificarDepartamento(self, nombre, localidad, numero):
+    def modificarDepartamento(self, numero, nombre, localidad):
         sql='update DEPT set DNOMBRE=:p1, LOC=:p2 where DEPT_NO=:p3'
         cursor=self.connection.cursor()
         cursor.execute(sql, (nombre, localidad, numero))

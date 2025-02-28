@@ -6,7 +6,7 @@ print('-------CRUD DOCTORES--------')
 servicio=service.ServiceOracleDoctores()
 doctores=servicio.getAllDoctores()
 for doc in doctores:
-    print(f'{doc.apellido}, Especialidad: {doc.especialidad}, {doc.salario}')
+    print(f'{doc.apellido}, {doc.especialidad}, {doc.salario}')
 
 print('Seleccione una opción: ')
 print('1.- Insertar doctor ')
