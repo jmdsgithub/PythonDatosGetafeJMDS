@@ -22,9 +22,9 @@ class ServiceOraclePlantilla:
         return data
 
     def updateSalarioPlantilla(self,salario, hospital):
-        sql='update PLANTILLA set SALARIO=:p1 where HOSPITAL_COD=:p2'
+        sql='update PLANTILLA set SALARIO=SALARIO+:p1 where HOSPITAL_COD=:p2'
         cursor=self.connection.cursor()
-        cursor.execute(sql, (salario, hospital))
+        cursor.execute(sql, (incremento, hospital))
         registros:list[Plantilla]=cursor.rowcount
         self.connection.commit()
         cursor.close()

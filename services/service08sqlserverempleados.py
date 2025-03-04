@@ -22,9 +22,9 @@ class ServiceSqlServerEmpleados:
         return data
 
     def updateSalarioPlantilla(self,salario, hospital):
-        sql='update PLANTILLA set SALARIO=? where HOSPITAL_COD=?'
+        sql='update PLANTILLA set SALARIO=SALARIO+? where HOSPITAL_COD=?'
         cursor=self.connection.cursor()
-        cursor.execute(sql, (salario, hospital))
+        cursor.execute(sql, (incremento, hospital))
         registros:list[Plantilla]=cursor.rowcount
         self.connection.commit()
         cursor.close()
